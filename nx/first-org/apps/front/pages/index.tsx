@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import {Todo} from '@first-org/data'
 
@@ -9,18 +9,21 @@ const StyledPage = styled.div`
 `;
 
 export function Index() {
-  const [todos, setTodos] = useState<Todo[]>([
-    { id:'todo1', title: 'Todo 1' },
-    { id:'todo2', title: 'Todo 2' },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>([]);
+  useEffect(() => {
+    fetch('/api/todo')
+      .then((_) => _.json())
+      .then(setTodos);
+  }, []);
   const addTodo = ()=> {
-    setTodos((prev)=>[
-      ...prev,
-      {
-        id:`todo:${Math.floor(Math.random() * 1000)}`,
-        title: `New todo ${Math.floor(Math.random() * 1000)}`,
-      },
-    ]);
+    fetch('/api/todo', {
+      method: 'POST',
+      body: '',
+    })
+      .then((_) => _.json())
+      .then((newTodo) => {
+        setTodos([...todos, newTodo]);
+      });
   }
   return (
     <StyledPage>

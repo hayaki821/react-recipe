@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@first-org/data": ["libs/data/src/index.ts"]
+      "@first-org/data": ["libs/data/src/index.ts"],
+      "@first-org/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
