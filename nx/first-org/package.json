@@ -19,6 +19,7 @@
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^5.2.1",
     "@nrwl/next": "14.3.6",
     "core-js": "^3.6.5",
     "next": "12.1.6",
@@ -27,6 +28,7 @@
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
+    "swagger-ui-express": "^4.4.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
