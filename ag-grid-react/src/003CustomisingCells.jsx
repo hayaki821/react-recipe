@@ -24,7 +24,7 @@ const PushComp = p => {
       <button onClick={onAt}>Push</button>
       {/* p.value: セルの行データの値 p.value: 行の各セルの生データ*/}
       {p.value}
-      {p.data.value}
+      {p.test}
     </>
   );
 };
@@ -59,15 +59,18 @@ const CustomisingCells = () => {
     {
       field: 'year',
       cellRendererSelector: p => {
+        // コンポーネントのレンダリングをデータに依存させたい場合は、セルレンダラーセレクタを使用することで実現できる
         if (p.value == 2000) {
-          return { component: PushComp, params: {} };
+          // paramsでcell comp内のp.hogeでアクセスできるようになる
+          return { component: PushComp, params: { test: 'aaa' } };
         }
         if (p.value == 2004) {
           return { component: PullComp };
         }
       },
     },
-    { field: 'date' },
+    // デフォルトでのcellRendererを打ち消せる
+    { field: 'date', cellRenderer: null },
     { field: 'sport' },
     { field: 'gold' },
     { field: 'silver' },
@@ -78,6 +81,7 @@ const CustomisingCells = () => {
     () => ({
       sortable: true,
       filter: true,
+      // cellRenderer: SimpleComp // これで常にカスタムセルを使用できる
     }),
     []
   );
